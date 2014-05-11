@@ -31,7 +31,8 @@ int main()
     median = calcMedian(midTerm, final, homeWork);
 
     std::cout << "Median " << median << std::endl;
-    std::cout << "Your final grade is " << (0.2 * midTerm) + (0.4 * final) + (0.4 * median) << std::endl;
+    std::cout << "Your final grade is " << (0.2 * midTerm) + \
+        (0.4 * final) + (0.4 * median) << std::endl;
     return 0;
 }
 
@@ -45,7 +46,8 @@ double calcMedian(double midTerm, double final, std::vector<double> &hw)
     if(homeWorkSize)
     {
         sort (hw.begin(), hw.end());
-        median = ((homeWorkSize % 2) == 0) ? (hw[homeWorkSize/2] + hw[(homeWorkSize/2)-1])/2 : hw[homeWorkSize/2];
+        median = ((homeWorkSize % 2) == 0) ? \
+                 (hw[homeWorkSize/2] + hw[(homeWorkSize/2)-1])/2 : hw[homeWorkSize/2];
     }
     return median;
 }
