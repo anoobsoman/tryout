@@ -39,7 +39,8 @@ double calcGrade(double midTerm, double final, double median)
 
 double calcGrade(double midTerm, double final, std::vector<double> &hw)
 {
-    return ((0.2 * midTerm) + (0.4 * final) + (0.4 * calcMedian(hw)));
+    return calcGrade(midTerm, final, calcMedian(hw));
+    //return ((0.2 * midTerm) + (0.4 * final) + (0.4 * calcMedian(hw)));
 }
 
 double calcMedian(std::vector<double> hw)
