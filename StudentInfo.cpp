@@ -46,6 +46,12 @@ std::istream& readHw(std::istream &in, std::vector<double> &hw)
     return in;
 }
 
+double setGrade(StudentInfo &info, double grade)
+{
+    info.grade = grade;
+    return grade;
+}
+
 double calcGrade(double midTerm, double final, double median)
 {
     return ((0.2 * midTerm) + (0.4 * final) + (0.4 * median));
@@ -54,4 +60,21 @@ double calcGrade(double midTerm, double final, double median)
 double calcGrade(double midTerm, double final, std::vector<double> &hw)
 {
     return calcGrade(midTerm, final, calcMedian(hw));
+}
+
+std::vector<StudentInfo> calcFGrade(std::vector<StudentInfo> &stdInfo)
+{
+    std::vector<StudentInfo>::iterator itr;
+    std::vector<StudentInfo> fStudent;
+
+    itr = stdInfo.begin();
+    while(itr != stdInfo.end())
+    {
+        if(calcGrade(itr->midTerm, itr->final, itr->homeWork) < 35)
+        {
+            fStudent.push_back(*itr);
+        }
+        ++itr;
+    }
+    return fStudent;
 }
