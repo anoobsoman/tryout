@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <vector>
 #include <list>
 
 #include "StudentInfo.h"
@@ -9,6 +11,34 @@ bool compare(StudentInfo &a, StudentInfo &b)
     return (a.name < b.name);
 }
 
+void randStdInfo(std::vector<StudentInfo> &stdInfo, unsigned int numStdInfo)
+{
+    StudentInfo record;
+    for (int i=0; i<=numStdInfo; i++)
+    {
+        record.name = "A";
+        record.midTerm = (rand() % 100);
+        record.final = (rand() % 100);
+        record.homeWork.push_back((rand() % 100));
+        stdInfo.push_back(record);
+    }
+    return;
+}
+
+void randStdInfo(std::list<StudentInfo> &stdInfo, unsigned int numStdInfo)
+{
+    StudentInfo record;
+    for (int i=0; i<=numStdInfo; i++)
+    {
+        record.name = "A";
+        record.midTerm = rand() % 100;
+        record.final = rand() % 100;
+        record.homeWork.push_back(rand() % 100);
+        stdInfo.push_back(record);
+    }
+ 
+    return;
+}
 std::istream& readStdInfo(std::istream &in, StudentInfo &record)
 {
     if(in)
@@ -59,6 +89,25 @@ double calcGrade(double midTerm, double final, double median)
 double calcGrade(double midTerm, double final, std::vector<double> &hw)
 {
     return calcGrade(midTerm, final, calcMedian(hw));
+}
+
+std::vector<StudentInfo> calcFGrade(std::vector<StudentInfo> &stdInfo)
+{
+    std::vector<StudentInfo>::iterator itr;
+    std::vector<StudentInfo> fStudent;
+
+    itr = stdInfo.begin();
+    while(itr != stdInfo.end())
+    {
+        if(itr->grade < 35)
+        {
+            fStudent.push_back(*itr);
+            itr = stdInfo.erase(itr);
+            continue;
+        }
+        ++itr;
+    }
+    return fStudent;
 }
 
 std::list<StudentInfo> calcFGrade(std::list<StudentInfo> &stdInfo)

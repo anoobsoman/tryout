@@ -6,26 +6,34 @@
 
 int main()
 {
-    std::list <StudentInfo> stdInfo;
+    std::vector <StudentInfo> stdInfo;
     StudentInfo record;
-    std::list<StudentInfo>::iterator i;
-    std::list<StudentInfo> fStudents;
+    std::vector<StudentInfo>::iterator i;
+    std::vector<StudentInfo> fStudents;
 
+#if 0
     while(readStdInfo(std::cin, record))
     {
         stdInfo.push_back(record);
     }
+#endif
+    randStdInfo(stdInfo, 5000);
 
-    stdInfo.sort(compare);
+    //sort(stdInfo.begin(), stdInfo.end(), compare);
+    //stdInfo.sort(compare);
 
     for(i = stdInfo.begin(); i != stdInfo.end(); i++)
     {
+        setGrade(*i, calcGrade(i->midTerm, i->final, i->homeWork));
+#if 0
         std::cout << "Hello, " << i->name << \
             " Your final grade is " << setGrade(*i, calcGrade(i->midTerm, i->final, i->homeWork)) << std::endl;
+#endif
     }
 
     fStudents = calcFGrade(stdInfo); 
 
+    /*
     if(fStudents.size() != 0)
     {
         i = fStudents.begin();
@@ -48,6 +56,7 @@ int main()
         }
  
     }
+    */
     return 0;
 }
 
