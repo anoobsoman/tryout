@@ -28,7 +28,6 @@ std::istream& readStdInfo(std::istream &in, StudentInfo &record)
     return in;
 }
 
-
 std::istream& readHw(std::istream &in, std::vector<double> &hw)
 {
     if (in)
@@ -70,11 +69,13 @@ std::vector<StudentInfo> calcFGrade(std::vector<StudentInfo> &stdInfo)
     itr = stdInfo.begin();
     while(itr != stdInfo.end())
     {
-        if(calcGrade(itr->midTerm, itr->final, itr->homeWork) < 35)
+        if(itr->grade < 35)
         {
             fStudent.push_back(*itr);
+            stdInfo.erase(itr);
         }
-        ++itr;
+        else
+            ++itr;
     }
     return fStudent;
 }

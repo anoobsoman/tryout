@@ -37,6 +37,17 @@ int main()
     }
     else
         std::cout << "No Student failed " << std::endl;
+
+    if(stdInfo.size() != 0)
+    {
+        i = stdInfo.begin();
+        while (i != stdInfo.end())
+        {
+            std::cout << i->name << ", PASSED with grade of " << i->grade << std::endl;
+            ++i;
+        }
+ 
+    }
     return 0;
 }
 
