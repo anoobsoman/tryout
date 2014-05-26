@@ -1,22 +1,22 @@
 #include <iostream>
-#include <vector>
+#include <list>
 
 #include "median.h"
 #include "StudentInfo.h"
 
 int main()
 {
-    std::vector <StudentInfo> stdInfo;
+    std::list <StudentInfo> stdInfo;
     StudentInfo record;
-    std::vector<StudentInfo>::iterator i;
-    std::vector<StudentInfo> fStudents;
+    std::list<StudentInfo>::iterator i;
+    std::list<StudentInfo> fStudents;
 
     while(readStdInfo(std::cin, record))
     {
         stdInfo.push_back(record);
     }
 
-    sort(stdInfo.begin(), stdInfo.end(), compare);
+    stdInfo.sort(compare);
 
     for(i = stdInfo.begin(); i != stdInfo.end(); i++)
     {

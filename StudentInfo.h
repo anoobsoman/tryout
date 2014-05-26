@@ -2,6 +2,7 @@
 #define __STUDENT_INFO
 
 #include <iostream>
+#include <list>
 #include <vector>
 #include <string>
 
@@ -10,10 +11,10 @@ struct StudentInfo {
     double midTerm, final;
     std::vector<double> homeWork;
     double grade;
-} ;
+};
 double calcGrade(double midTerm, double final, double median);
 double calcGrade(double midTerm, double final, std::vector<double> &hw);
-std::vector<StudentInfo> calcFGrade(std::vector<StudentInfo> &stdInfo);
+std::list<StudentInfo> calcFGrade(std::list<StudentInfo> &stdInfo);
 double setGrade(StudentInfo &info, double grade);
 
 std::istream& readHw(std::istream& in, std::vector<double>& hw);

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <list>
 
 #include "StudentInfo.h"
 #include "median.h"
@@ -61,10 +61,10 @@ double calcGrade(double midTerm, double final, std::vector<double> &hw)
     return calcGrade(midTerm, final, calcMedian(hw));
 }
 
-std::vector<StudentInfo> calcFGrade(std::vector<StudentInfo> &stdInfo)
+std::list<StudentInfo> calcFGrade(std::list<StudentInfo> &stdInfo)
 {
-    std::vector<StudentInfo>::iterator itr;
-    std::vector<StudentInfo> fStudent;
+    std::list<StudentInfo>::iterator itr;
+    std::list<StudentInfo> fStudent;
 
     itr = stdInfo.begin();
     while(itr != stdInfo.end())
@@ -72,10 +72,10 @@ std::vector<StudentInfo> calcFGrade(std::vector<StudentInfo> &stdInfo)
         if(itr->grade < 35)
         {
             fStudent.push_back(*itr);
-            stdInfo.erase(itr);
+            itr = stdInfo.erase(itr);
+            continue;
         }
-        else
-            ++itr;
+        ++itr;
     }
     return fStudent;
 }
